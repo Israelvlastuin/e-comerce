@@ -57,3 +57,41 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+const form = {
+user: () => document.getElementById("idInputSenha");
+
+    
+    const usuario=form.user().Value;
+    const password=form.senha().Value;
+
+    firebase.auth().createUserWithEmailAndPassword(
+        usuario,password
+        ).then(() => {
+            window.location.href="login.html";
+        }).catch(error{
+            alert(getErrorMessage(error))
+        })
+}
+const btnlogin=document.getElementById("idLogin");
+
+
+btnlogin.addEventListener("click", function(){
+    firebase.auth().signInWithEmailAndPassword(
+        form.user().value,form.senha().Value)Then(Response =>{
+            window.location.href="index.html";
+        }).catch(error =>{
+            console.log('error');
+            alert(getErrorMessage(error));
+        }
+});
+
+function cadastro(){
+    window.location.href="cadastro.html"
+}
+function getErrorMessage(error) {
+    if (error.code == "auth/email-already-in-use") {
+        return "Email já está em uso";
+    }
+    return error.message;
+}
+    
